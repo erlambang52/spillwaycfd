@@ -1,0 +1,16 @@
+solid atm
+  facet normal 0.000000e+00 0.000000e+00 1.000000e+00
+    outer loop
+      vertex   -5.763333e+00 -4.243633e+00 1.001000e+01
+      vertex   2.275000e+01 -4.243633e+00 1.001000e+01
+      vertex   -5.763333e+00 4.243633e+00 1.001000e+01
+    endloop
+  endfacet
+  facet normal -0.000000e+00 0.000000e+00 1.000000e+00
+    outer loop
+      vertex   -5.763333e+00 4.243633e+00 1.001000e+01
+      vertex   2.275000e+01 -4.243633e+00 1.001000e+01
+      vertex   2.275000e+01 4.243633e+00 1.001000e+01
+    endloop
+  endfacet
+endsolid atm

@@ -1,0 +1,91 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2306                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     interFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         60;
+
+deltaT          0.1;
+
+writeControl    adjustable;
+
+writeInterval   0.25;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression on;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+adjustTimeStep  yes;
+
+maxCo           20;
+
+maxAlphaCo      20;
+
+maxDeltaT       1;
+
+functions
+{
+    inletFlux
+    {
+        type            surfaceFieldValue;
+        libs            (fieldFunctionObjects);
+        writeControl    timeStep;
+        log             true;
+        // Output field values as well
+        writeFields     false;
+        regionType      patch;
+        name            inlet;
+        operation       sum;
+
+        fields
+        (
+            rhoPhi
+        );
+    }
+
+    outletFlux
+    {
+        $inletFlux;
+        name            outlet;
+    }
+
+    atmosphereFlux
+    {
+        $inletFlux;
+        name            atm;
+    }
+
+    
+}
+
+
+// ************************************************************************* //

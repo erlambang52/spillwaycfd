@@ -1,0 +1,87 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                |
+| \\      /  F ield         | cfMesh: A library for mesh generation          | 
+|  \\    /   O peration     |                                                |
+|   \\  /    A nd           | Author: Franjo Juretic                         | 
+|    \\/     M anipulation  | E-mail: franjo.juretic@c-fields.com            |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version   2.0;
+    format    ascii;
+    class     dictionary;
+    location  "system";
+    object    meshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+surfaceFile "spillway.stl";
+
+maxCellSize 0.25;
+
+boundaryCellSize 0.25;
+
+minCellSize 0.25;
+
+localRefinement
+{
+   
+}
+
+boundaryLayers
+{
+    nLayers 5;
+
+    thicknessRatio 1.2;
+
+    maxFirstLayerThickness 0.05;
+
+//    patchBoundaryLayers
+//    {
+//    }
+}
+
+renameBoundary
+{
+    defaultName		fixedWalls;
+    defaultType		wall;
+
+    newPatchNames
+    {
+        inlet
+        {
+            newName     inlet;
+            newType     patch;
+        }
+
+        outlet
+        {
+            newName     outlet;
+            newType     patch;
+        }
+
+	 dinding
+        {
+            newName     dinding;
+            newType     wall;
+        }
+
+	atm
+        {
+            newName     atm;
+            newType     patch;
+        }
+	
+	sym
+        {
+            newName     sym;
+            newType     patch;
+        }
+	
+    }
+}
+               
+     
+// ************************************************************************* //
